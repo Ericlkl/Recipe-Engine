@@ -1,7 +1,7 @@
 import * as fs from 'fs';
 import * as path from 'path';
 import * as csv from 'fast-csv';
-import _ from 'lodash';
+import { isEqualNotCaseSensetive } from './string';
 
 type FoodDataRow = {
   Fruit: string;
@@ -32,7 +32,7 @@ export const storeInfoToCSV = async (row: FoodDataRow) => {
     // Checking data wheither exist before or not
     // If it is exist in our database, remove it
     database = database.filter((tempRow: FoodDataRow) =>
-      tempRow.Fruit === row.Fruit ? false : true
+      isEqualNotCaseSensetive(tempRow.Fruit, row.Fruit) ? false : true
     );
     // Update / Push new record in the final row
     database.push(row);
