@@ -15,6 +15,7 @@ const FoodProvider: React.FC = ({ children }) => {
       value={{
         name: state.name,
         recipe: state.recipe,
+        error: state.error,
         showQuery: state.showQuery,
         showRetry: state.showRetry,
         isloading: state.isloading,

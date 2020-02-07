@@ -9,6 +9,7 @@ import {
 } from '@material-ui/core';
 
 type PromptProps = {
+  open: boolean;
   content: string;
   submitBtnText: string;
   onSubmit: () => void;
@@ -16,6 +17,7 @@ type PromptProps = {
 };
 
 const Prompt: React.FC<PromptProps> = ({
+  open,
   content,
   children,
   submitBtnText,
@@ -23,10 +25,8 @@ const Prompt: React.FC<PromptProps> = ({
   onClose
 }) => {
   return (
-    <Dialog open aria-labelledby='form-dialog-title'>
-      <DialogTitle id='form-dialog-title'>
-        Blackbook.AI Food Ingredients System
-      </DialogTitle>
+    <Dialog open={open} aria-labelledby='form-dialog-title'>
+      <DialogTitle id='form-dialog-title'>Food Ingredients Search</DialogTitle>
 
       <DialogContent>
         <DialogContentText>{content}</DialogContentText>

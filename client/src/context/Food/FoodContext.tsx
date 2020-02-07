@@ -2,6 +2,7 @@ import { createContext } from 'react';
 
 export const initialState: {
   name: string;
+  error: string;
   recipe: string;
   showQuery: boolean;
   showRetry: boolean;
@@ -10,6 +11,7 @@ export const initialState: {
   fetchRecipe: () => void;
 } = {
   name: 'Food',
+  error: '',
   recipe: '',
   showQuery: true,
   showRetry: false,
