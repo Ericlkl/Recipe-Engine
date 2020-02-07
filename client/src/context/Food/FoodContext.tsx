@@ -1,5 +1,6 @@
 import { createContext } from 'react';
 
+// initial State for Food Context Global Storage
 export const initialState: {
   name: string;
   error: string;
@@ -7,7 +8,7 @@ export const initialState: {
   showQuery: boolean;
   showRetry: boolean;
   isloading: boolean;
-  fetchFruit: () => void;
+  fetchFruit: (name: string) => void;
   fetchRecipe: () => void;
 } = {
   name: 'Food',
@@ -16,7 +17,7 @@ export const initialState: {
   showQuery: true,
   showRetry: false,
   isloading: false,
-  fetchFruit: () => {},
+  fetchFruit: (name: string) => {},
   fetchRecipe: () => {}
 };
 

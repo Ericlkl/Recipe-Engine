@@ -1,3 +1,4 @@
+// Action for Context API
 export enum FoodAction {
   FETCH_RECIPE = 'FETCH_RECIPE',
   FETCH_FRUIT = 'FETCH_FRUIT',

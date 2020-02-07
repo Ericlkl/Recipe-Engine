@@ -17,12 +17,15 @@ const SearchPrompt: React.FC = () => {
   const onInputChange = (e: React.ChangeEvent<HTMLInputElement>) =>
     setFruitName(e.target.value);
 
+  // On Submit Btn Click
+  const onSubmit = () => fetchFruit(fruitName);
+
   return (
     <Prompt
       open={showQuery}
       content='Please enter food name'
       submitBtnText='Submit'
-      onSubmit={fetchFruit}
+      onSubmit={onSubmit}
       onClose={() => {}}
     >
       <TextField
