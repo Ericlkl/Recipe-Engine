@@ -1,11 +1,12 @@
 // Library
-import { Router, Request, Response } from 'express';
+import { Router } from 'express';
 // Middlewares
 import { getRecipeEndPointValidator } from '../middlewares';
+// Controllers
+import { getBestRecipes } from '../controller/recipes';
 const router = Router();
 
-router.get('/', getRecipeEndPointValidator, (req: Request, res: Response) => {
-  res.json({ msg: 'Hello' });
-});
+// Routes
+router.get('/', getRecipeEndPointValidator, getBestRecipes);
 
 export default router;

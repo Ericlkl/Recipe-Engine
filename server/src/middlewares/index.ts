@@ -1,7 +1,7 @@
 // Library
 import express, { RequestHandler } from 'express';
 import path from 'path';
-import { check, validationResult, param, query } from 'express-validator';
+import { validationResult, query } from 'express-validator';
 
 // Services
 import { isFruit, existInTable } from '../services/fruitManager';
@@ -21,13 +21,11 @@ export const identifyFruitMiddleware: RequestHandler = async (
   const { name } = req.query;
 
   if (await existInTable(name)) {
-    console.log('Exist In table');
     return next();
   } else if (await isFruit(name)) {
-    console.log('Is Fruit');
     return next();
   } else {
-    return res.status(201).json({
+    return res.status(400).json({
       error: `I don't believe this is a fruit`,
       result: []
     });
@@ -38,7 +36,14 @@ export const identifyFruitMiddleware: RequestHandler = async (
 const validateParams: RequestHandler = (req, res, next) => {
   const errors = validationResult(req);
   if (!errors.isEmpty()) {
-    return res.status(400).json({ errors: errors.array(), result: [] });
+    // Return error message in string format
+    return res.status(400).json({
+      error: errors
+        .array()
+        .map(err => err.msg)
+        .join(' & '),
+      result: []
+    });
   }
   next();
 };

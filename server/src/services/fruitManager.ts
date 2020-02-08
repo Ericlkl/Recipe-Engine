@@ -6,10 +6,8 @@ import cheerio from 'cheerio';
 // API
 import { foodDataCentralAPI, tasteDotCom } from '../api';
 // Helper
-import { readFromCSV, storeInfoToCSV } from './csvhelper';
+import { readFromCSV } from './csvhelper';
 import { isEqualNotCaseSensetive } from './string';
-// Types
-import { Recipe } from '../types';
 
 require('dotenv').config({ path: path.resolve(__dirname, '../', '.env') });
 
@@ -78,35 +76,6 @@ export const searchRecipes = async (name: string, num: number = 3) => {
     .get()
     .slice(0, num);
 
+  // Return Recipes details links back
   return recipesHrefs;
-};
-
-export const getBestRecipes = async (name: string) => {
-  try {
-    // Get Recipes which related to the fruit but Non-Featured
-    const recipesHrefs = await searchRecipes(name);
-
-    // Get the top 3 Recipes details
-    let recipes: Recipe[] = [];
-    for (let href of recipesHrefs) {
-      recipes.push(await getRecipeDetails(href));
-    }
-
-    const bestRecipe = recipes.reduce((prev, current) => {
-      return prev.Ingredients.length > current.Ingredients.length
-        ? prev
-        : current;
-    });
-
-    await storeInfoToCSV({
-      Fruit: name,
-      Ingredients: bestRecipe.Ingredients.join(' '),
-      Recipe: bestRecipe.Recipe.join(' ')
-    });
-
-    return [{ ...bestRecipe, best: true }, ...recipes];
-  } catch (error) {
-    console.error(error);
-    console.log('Server unable to get the best recipe ...');
-  }
 };

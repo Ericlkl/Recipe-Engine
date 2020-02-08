@@ -1,14 +1,17 @@
+// Library
 import * as fs from 'fs';
 import * as path from 'path';
 import * as csv from 'fast-csv';
 import { isEqualNotCaseSensetive } from './string';
 
+// Types
 type FoodDataRow = {
   Fruit: string;
   Recipe: string;
   Ingredients: string;
 };
 
+// Target CSV path
 const csvPath = path.resolve(__dirname, '../', 'data', 'food.csv');
 
 export const readFromCSV = async (): Promise<FoodDataRow[]> => {

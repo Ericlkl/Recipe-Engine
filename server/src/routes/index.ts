@@ -1,8 +1,11 @@
+// Library
 import path from 'path';
 import fruitRouter from './fruit';
 
+// Types
 import { Application } from 'express';
 
+// Plug in all the routes into ExpressJS server application
 export default (app: Application) => {
   // Plug fruit API endpoints to application
   app.use('/api/fruits', fruitRouter);

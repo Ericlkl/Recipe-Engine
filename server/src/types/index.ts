@@ -1,3 +1,4 @@
+// Types
 export type Recipe = {
   RecipeName?: string;
   Recipe: string[];
