@@ -1,22 +1,23 @@
-import React, { Fragment, useContext } from 'react';
+import React, { Fragment } from 'react';
 import './App.css';
 
 // Components
+import Navbar from './components/layout/Navbar';
 import SearchPrompt from './components/SearchPrompt';
+import RetryPrompt from './components/RetryPrompt';
 
 // Context / Global Store
-import FoodProvider from './context/Food/FoodProvider';
-import FoodContext from './context/Food/FoodContext';
+import RecipeProvider from './context/Recipe/RecipeProvider';
 
 const App: React.FC = () => {
-  const { name, error, showQuery, fetchFruit } = useContext(FoodContext);
-
   return (
-    <FoodProvider>
+    <RecipeProvider>
       <Fragment>
+        <Navbar />
         <SearchPrompt />
+        <RetryPrompt />
       </Fragment>
-    </FoodProvider>
+    </RecipeProvider>
   );
 };
 

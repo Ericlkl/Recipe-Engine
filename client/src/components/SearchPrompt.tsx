@@ -1,16 +1,16 @@
 // Library
 import React, { useContext, useState } from 'react';
-import _ from 'lodash';
+import { isEmpty } from 'lodash';
 
 // Context / Global State
-import FoodContext from '../context/Food/FoodContext';
+import RecipeContext from '../context/Recipe/RecipeContext';
 
 // Component
 import { TextField } from '@material-ui/core';
-import Prompt from './Prompt';
+import Prompt from './layout/Prompt';
 
 const SearchPrompt: React.FC = () => {
-  const { error, showQuery, fetchFruit } = useContext(FoodContext);
+  const { openQuery, fetchRecipes, dismissQuery } = useContext(RecipeContext);
 
   const [fruitName, setFruitName] = useState('');
 
@@ -18,15 +18,15 @@ const SearchPrompt: React.FC = () => {
     setFruitName(e.target.value);
 
   // On Submit Btn Click
-  const onSubmit = () => fetchFruit(fruitName);
+  const onSubmit = async () => fetchRecipes(fruitName);
 
   return (
     <Prompt
-      open={showQuery}
-      content='Please enter food name'
+      open={openQuery}
+      content='Please enter fruit name'
       submitBtnText='Submit'
       onSubmit={onSubmit}
-      onClose={() => {}}
+      onClose={dismissQuery}
     >
       <TextField
         value={fruitName}
@@ -37,8 +37,6 @@ const SearchPrompt: React.FC = () => {
         label='fruit name'
         type='text'
         fullWidth
-        error={!_.isEmpty(error)}
-        helperText={!_.isEmpty(error) && 'Incorrect entry.'}
         variant='outlined'
       />
     </Prompt>

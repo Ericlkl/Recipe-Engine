@@ -9,7 +9,7 @@ import { foodDataCentralAPI, tasteDotCom } from '../api';
 import { readFromCSV } from './csvhelper';
 import { isEqualNotCaseSensetive } from './string';
 
-require('dotenv').config({ path: path.resolve(__dirname, '../', '.env') });
+require('dotenv').config({ path: path.resolve(__dirname, '../../', '.env') });
 
 // Check Fruit Exist inside the csv file or not
 export const existInTable = async (name: string) => {

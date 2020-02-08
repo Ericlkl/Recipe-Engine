@@ -26,7 +26,7 @@ export const identifyFruitMiddleware: RequestHandler = async (
     return next();
   } else {
     return res.status(400).json({
-      error: `I don't believe this is a fruit`,
+      msg: `I don't believe this is a fruit`,
       result: []
     });
   }
@@ -38,11 +38,10 @@ const validateParams: RequestHandler = (req, res, next) => {
   if (!errors.isEmpty()) {
     // Return error message in string format
     return res.status(400).json({
-      error: errors
+      msg: errors
         .array()
         .map(err => err.msg)
-        .join(' & '),
-      result: []
+        .join(' & ')
     });
   }
   next();

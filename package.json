@@ -24,6 +24,7 @@
   },
   "homepage": "https://github.com/Ericlkl/Blackbook-Interview#readme",
   "dependencies": {
+    "@material-ui/icons": "^4.9.1",
     "concurrently": "^5.1.0",
     "nodemon": "^2.0.2"
   }

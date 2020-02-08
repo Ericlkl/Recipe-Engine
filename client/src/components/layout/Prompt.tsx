@@ -26,7 +26,7 @@ const Prompt: React.FC<PromptProps> = ({
 }) => {
   return (
     <Dialog open={open} aria-labelledby='form-dialog-title'>
-      <DialogTitle id='form-dialog-title'>Food Ingredients Search</DialogTitle>
+      <DialogTitle id='form-dialog-title'>Recipe Search</DialogTitle>
 
       <DialogContent>
         <DialogContentText>{content}</DialogContentText>

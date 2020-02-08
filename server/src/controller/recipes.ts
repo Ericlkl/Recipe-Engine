@@ -50,6 +50,6 @@ export const getBestRecipes: RequestHandler = async (req, res) => {
   } catch (error) {
     console.error(error);
     console.log('Server unable to get the best recipe ...');
-    res.status(401).json({ error: 'Server unable to get the best recipe ...' });
+    res.status(401).json({ msg: 'Server unable to get the best recipe ...' });
   }
 };
