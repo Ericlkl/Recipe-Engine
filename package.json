@@ -1,0 +1,30 @@
+{
+  "name": "recipe-system",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "client": "npm run start --prefix client",
+    "client-install": "npm install --prefix client",
+    "client-build": "npm run build --prefix client",
+    "start": "npm run start --prefix server",
+    "server": "npm run server --prefix server",
+    "server-install": "npm install --prefix server",
+    "server-build": "npm run build --prefix server",
+    "dev": "concurrently 'npm run client' 'npm run server' "
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Ericlkl/Blackbook-Interview.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Ericlkl/Blackbook-Interview/issues"
+  },
+  "homepage": "https://github.com/Ericlkl/Blackbook-Interview#readme",
+  "dependencies": {
+    "concurrently": "^5.1.0",
+    "nodemon": "^2.0.2"
+  }
+}

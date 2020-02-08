@@ -54,8 +54,11 @@ export const getRecipeDetails = async (url: string) => {
   };
 };
 
-// Search Recipes on taste.com
-// name : must be lowercase
+/*
+  Search Recipes on taste.com
+  name : must be lowercase
+  num: How many numbers of Recipes you want (default = 3)
+*/
 export const searchRecipes = async (name: string, num: number = 3) => {
   // The website only accepted the query name in lowercase
   const searchPage = await tasteDotCom.get(
@@ -64,10 +67,12 @@ export const searchRecipes = async (name: string, num: number = 3) => {
   // Load HTML to cheerio so that
   const $ = cheerio.load(searchPage.data);
 
-  // Find out recipes related to the query
-  // matched recipes are wrapped inside a li element with col-xs-6 col-md-4 class
-  // We need the top recipes, so I set the sorting to rating
-  // We also need to remove the featured recipes which are wrapped a extra class promoted-search
+  /* 
+    Find out recipes related to the query
+    matched recipes are wrapped inside a li element with col-xs-6 col-md-4 class
+    We need the top recipes, so I set the sorting to rating
+    We also need to remove the featured recipes which are wrapped a extra class promoted-search
+  */
   const recipesHrefs: string[] = $('li.col-xs-6.col-md-4')
     .not('.promoted-search')
     .find('.title > h3')

@@ -12,7 +12,7 @@ type FoodDataRow = {
 };
 
 // Target CSV path
-const csvPath = path.resolve(__dirname, '../', 'data', 'food.csv');
+const csvPath = path.resolve(__dirname, '../../', 'data', 'fruit.csv');
 
 export const readFromCSV = async (): Promise<FoodDataRow[]> => {
   return new Promise((resolve, reject) => {
