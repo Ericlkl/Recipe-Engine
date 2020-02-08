@@ -1,6 +1,17 @@
 import React from 'react';
 import { Recipe } from '../../types';
 
+type StarBadgeProps = {
+  opacity: number;
+};
+const StarBadge: React.FC<StarBadgeProps> = ({ opacity }) => {
+  return (
+    <div style={{ opacity }} className='recipes_card_best'>
+      <i className='far fa-star' />
+    </div>
+  );
+};
+
 type CardSectionRowProps = {
   rowNumber: number;
   content: string;
@@ -39,9 +50,10 @@ type CarProps = {
 };
 
 const Card: React.FC<CarProps> = ({ recipe }) => {
-  const { RecipeName, Ingredients, Recipe } = recipe;
+  const { RecipeName, Ingredients, Recipe, best } = recipe;
   return (
-    <div className='recipes_card'>
+    <div id={best ? 'best' : ''} className={`recipes_card`}>
+      <StarBadge opacity={best ? 100 : 0} />
       <h2 className='recipes_card_title'>{RecipeName}</h2>
       <CardSection title='Ingredients' items={Ingredients} />
       <CardSection title='Recipe' items={Recipe} />

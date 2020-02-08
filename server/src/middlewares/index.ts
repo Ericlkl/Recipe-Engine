@@ -1,10 +1,12 @@
 // Library
-import express, { RequestHandler } from 'express';
 import path from 'path';
+import express, { RequestHandler } from 'express';
+import { upperFirst } from 'lodash';
 import { validationResult, query } from 'express-validator';
 
 // Services
 import { isFruit, existInTable } from '../services/fruitManager';
+import { storeInfoToCSV } from '../services/csvhelper';
 
 // Serve Static Assets from client folder
 // So that client can download the website assets
@@ -23,11 +25,16 @@ export const identifyFruitMiddleware: RequestHandler = async (
   if (await existInTable(name)) {
     return next();
   } else if (await isFruit(name)) {
+    // Store the best recipe for this fruit into CSV file
+    await storeInfoToCSV({
+      Fruit: upperFirst(name),
+      Ingredients: '',
+      Recipe: ''
+    });
     return next();
   } else {
     return res.status(400).json({
-      msg: `I don't believe this is a fruit`,
-      result: []
+      msg: `I don't believe this is a fruit`
     });
   }
 };
