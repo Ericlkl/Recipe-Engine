@@ -1,13 +1,16 @@
-import _ from 'lodash';
-import path from 'path';
+// Library
 import express from 'express';
-import { getBestRecipes, existInTable } from './services/fruitManager';
-
-import { readFromCSV } from './services/csvhelper';
-
+import logger from 'morgan';
+import router from './routes';
+import { staticAssetsMiddleware } from './middlewares';
+// Server Application Setting
 const app = express();
+
+// Middlewares
+app.use(logger('dev'));
 app.use(express.json());
+app.use(staticAssetsMiddleware);
 
-require('dotenv').config({ path: path.resolve(__dirname, '.env') });
+router(app);
 
-getBestRecipes('banana');
+export default app;

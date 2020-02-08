@@ -27,10 +27,12 @@ export const isFruit = async (name: string) => {
   const res = await foodDataCentralAPI.get('/', {
     params: {
       api_key: process.env.DATA_CENTRAL_APIKEY,
-      generalSearchInput: name
+      generalSearchInput: name,
+      pageNumber: 1,
+      requireAllWords: true
     }
   });
-  return res.data.foods.length > 0 ? true : false;
+  return res.data.totalHits > 0 ? true : false;
 };
 
 // Go to recipe details page
@@ -98,8 +100,8 @@ export const getBestRecipes = async (name: string) => {
 
     await storeInfoToCSV({
       Fruit: name,
-      Ingredients: bestRecipe.Ingredients.join(' \n'),
-      Recipe: bestRecipe.Recipe.join(' \n')
+      Ingredients: bestRecipe.Ingredients.join(' '),
+      Recipe: bestRecipe.Recipe.join(' ')
     });
 
     return [{ ...bestRecipe, best: true }, ...recipes];
