@@ -1,5 +1,4 @@
 // Library
-import { trim } from 'lodash';
 import path from 'path';
 import cheerio from 'cheerio';
 
@@ -45,9 +44,6 @@ export const getRecipeDetails = async (url: string) => {
     RecipeName: $('div.col-xs-12 > h1')
       .first()
       .text(),
-    Recipe: $('div.recipe-method-step-content')
-      .map((i, elem) => trim($(elem).text()))
-      .get(),
     Ingredients: $('div.ingredient-description')
       .map((i, elem) => $(elem).text())
       .get()

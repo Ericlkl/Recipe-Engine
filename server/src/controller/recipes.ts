@@ -34,8 +34,8 @@ export const getBestRecipes: RequestHandler = async (req, res) => {
     // Store the best recipe for this fruit into CSV file
     await storeInfoToCSV({
       Fruit: upperFirst(name),
-      Ingredients: bestRecipe.Ingredients.join(' '),
-      Recipe: bestRecipe.Recipe.join(' ')
+      Ingredients: bestRecipe.Ingredients.join('\r'),
+      Recipe: bestRecipe.RecipeName
     });
 
     // Return top 3 recipes result for client
