@@ -1,0 +1,50 @@
+.recipes {
+  display: grid;
+  max-width: 1100px;
+  grid-template-columns: repeat(3, 1fr);
+  grid-auto-rows: 1fr;
+  grid-gap: 1rem;
+
+  margin: 2rem auto;
+
+  &_card {
+    background-color: #fff;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.19), 0 6px 6px rgba(0, 0, 0, 0.23);
+    padding: 1rem;
+    &_title {
+      font-size: 500;
+      padding: 0.5rem 0;
+    }
+
+    &_section {
+      &_title {
+        color: #666;
+        font-size: 300;
+        padding: 0.25rem 0;
+      }
+
+      &_row {
+        display: grid;
+        grid-template-columns: 10% 90%;
+        grid-gap: 0.25rem;
+        margin: 0.5rem;
+        align-items: center;
+
+        &_num {
+          border: 2px solid rgb(63, 81, 181);
+          border-radius: 1.5rem;
+          color: #333;
+          display: inline-block;
+          font-weight: bold;
+          line-height: 1.6em;
+          text-align: center;
+        }
+
+        &_content {
+          color: #666;
+          padding: 0.5rem 1rem;
+        }
+      }
+    }
+  }
+}

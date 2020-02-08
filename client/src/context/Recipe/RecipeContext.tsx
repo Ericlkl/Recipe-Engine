@@ -21,7 +21,7 @@ export const initialState: {
   msg: '',
   error: false,
   recipes: [],
-  openQuery: true,
+  openQuery: false,
   openRetry: false,
   isloading: false,
   showQuery: () => {},
