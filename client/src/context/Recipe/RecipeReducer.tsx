@@ -36,7 +36,7 @@ export default (state: State, action: Action) => {
   switch (action.type) {
     // Display Query Prompt
     case RecipeAction.SHOW_QUERY:
-      return { ...state, openQuery: true, error: false };
+      return { ...state, openQuery: true, openRetry: false, error: false };
     // Display Retry Prompt
     case RecipeAction.SHOW_RETRY:
       return {
@@ -53,12 +53,10 @@ export default (state: State, action: Action) => {
       return { ...state, openQuery: false };
     // Dismiss Retry Prompt
     case RecipeAction.DISMISS_RETRY:
-      console.log('Dismiss');
-      console.log({ ...state, openRetry: false });
       return { ...state, openRetry: false };
     // Application is fetching Recipes
     case RecipeAction.IS_LOADING:
-      return { ...state, isloading: false, recipes: [], openQuery: false };
+      return { ...state, isloading: true, recipes: [], openQuery: false };
     default:
       return state;
   }

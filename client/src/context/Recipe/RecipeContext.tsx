@@ -22,7 +22,7 @@ export const initialState: {
   error: false,
   recipes: [],
   openQuery: true,
-  openRetry: true,
+  openRetry: false,
   isloading: false,
   showQuery: () => {},
   fetchRecipes: async (name: string) => {},
