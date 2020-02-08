@@ -40,7 +40,7 @@ export const getBestRecipes: RequestHandler = async (req, res) => {
 
     // Return top 3 recipes result for client
     res.json({
-      message:
+      msg:
         'Success! Best recipe has been saved to csv! Here is the top 3 recipes',
       results: recipes.map(recipe => {
         recipe.best = recipe.RecipeName === bestRecipe.RecipeName && true;

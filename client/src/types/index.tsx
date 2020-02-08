@@ -1,5 +1,5 @@
 export type Recipe = {
-  RecipeName?: string;
+  RecipeName: string;
   Recipe: string[];
   Ingredients: string[];
   best: boolean;

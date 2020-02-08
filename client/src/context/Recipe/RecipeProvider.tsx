@@ -16,38 +16,39 @@ const RecipeProvider: React.FC = ({ children }) => {
 
     try {
       const res = await axios.get(`/api/recipes/?name=${name}`);
+      // Update Recipes to Global State
       dispatch({
         type: RecipeAction.FETCH_RECIPES,
-        payload: res.data
+        payload: res.data.results
       });
+      // Display Sucess Msg to client and allow them try again
+      showRetry(res.data.msg);
     } catch (error) {
-      console.log('Fetch Data Unsuccessfully!');
       // Not Success, Show msg to user let them try again
-      dispatch({
-        type: RecipeAction.SHOW_RETRY,
-        payload: error.response.data.msg
-      });
+      showRetry(error.response.data.msg);
     }
   };
+
+  const showRetry = (msg: string) =>
+    dispatch({
+      type: RecipeAction.SHOW_RETRY,
+      payload: msg
+    });
 
   // Shows the Query Prompt on Screen
   const showQuery = () => dispatch({ type: RecipeAction.SHOW_QUERY });
 
   // Dismiss the Query Prompt
-  const dismissQuery = () => {
-    console.log('Hello');
+  const dismissQuery = () =>
     dispatch({
       type: RecipeAction.DISMISS_QUERY
     });
-  };
 
   // Dismiss the Retry Prompt
-  const dismissRetry = () => {
-    console.log('Hello');
+  const dismissRetry = () =>
     dispatch({
       type: RecipeAction.DISMISS_RETRY
     });
-  };
 
   return (
     <RecipeContext.Provider
