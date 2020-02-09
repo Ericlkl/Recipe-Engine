@@ -58,7 +58,7 @@ export const getRecipeDetails = async (url: string) => {
 export const searchRecipes = async (name: string, num: number = 3) => {
   // The website only accepted the query name in lowercase
   const searchPage = await tasteDotCom.get(
-    `search-recipes/?sort=rating&q=${name.toLowerCase()}`
+    `search-recipes/?q=${name.toLowerCase()}&ct=recipes`
   );
   // Load HTML to cheerio so that
   const $ = cheerio.load(searchPage.data);
@@ -66,7 +66,6 @@ export const searchRecipes = async (name: string, num: number = 3) => {
   /* 
     Find out recipes related to the query
     matched recipes are wrapped inside a li element with col-xs-6 col-md-4 class
-    We need the top recipes, so I set the sorting to rating
     We also need to remove the featured recipes which are wrapped a extra class promoted-search
   */
   const recipesHrefs: string[] = $('li.col-xs-6.col-md-4')
