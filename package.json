@@ -1,7 +1,7 @@
 {
-  "name": "recipe-system",
+  "name": "recipe-engine",
   "version": "1.0.0",
-  "description": "",
+  "description": "A Web application to search recipe for fruit.",
   "main": "index.js",
   "scripts": {
     "project-install": "npm i && npm run client-install && npm run client-build && npm run server-install && npm run server-build",
