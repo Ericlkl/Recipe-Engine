@@ -15,6 +15,7 @@ const RecipeProvider: React.FC = ({ children }) => {
     dispatch({ type: RecipeAction.IS_LOADING });
 
     try {
+      // Fetch recipes from local server
       const res = await axios.get(`/api/recipes/?name=${name}`);
       // Update Recipes to Global State
       dispatch({
@@ -28,10 +29,13 @@ const RecipeProvider: React.FC = ({ children }) => {
         // Not Success, Show msg to user let them try again
         return showRetry(error.response.data.msg);
       }
+      // Unable to connect server
       return showRetry('Not able to reach server');
     }
   };
 
+  // Shows the Retry Prompt on Screen
+  // Private method, no need to public it out
   const showRetry = (msg: string) =>
     dispatch({
       type: RecipeAction.SHOW_RETRY,

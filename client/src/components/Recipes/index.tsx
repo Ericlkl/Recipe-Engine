@@ -7,7 +7,8 @@ import Card from './Card';
 export default () => {
   const { recipes } = useContext(RecipeContext);
 
-  const renderRecipes = () => recipes.map(recipe => <Card recipe={recipe} />);
+  const renderRecipes = () =>
+    recipes.map(recipe => <Card key={recipe.RecipeName} recipe={recipe} />);
 
   if (recipes.length === 0) return <Fragment />;
 

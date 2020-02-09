@@ -7,6 +7,7 @@ import { CsvRow } from '../types';
 // Target CSV path
 const csvPath = path.resolve(__dirname, '../../', 'data', 'fruit.csv');
 
+// Read every row from csv, return result in an array
 export const readFromCSV = async (): Promise<CsvRow[]> => {
   return new Promise((resolve, reject) => {
     // Create an result array, return it at the end
@@ -21,6 +22,7 @@ export const readFromCSV = async (): Promise<CsvRow[]> => {
   });
 };
 
+// Store Fruit information to CSV following the csv row standard
 export const storeInfoToCSV = async (row: CsvRow) => {
   try {
     // Read all fruit data from CSV file
@@ -30,7 +32,7 @@ export const storeInfoToCSV = async (row: CsvRow) => {
     database = database.filter((tempRow: CsvRow) =>
       isEqualNotCaseSensetive(tempRow.Fruit, row.Fruit) ? false : true
     );
-    // Update / Push new record in the final row
+    // Push new record in the final row
     database.push(row);
 
     // Generate CSV data format for writing file
@@ -44,7 +46,7 @@ export const storeInfoToCSV = async (row: CsvRow) => {
     csv
       .writeToPath(csvPath, newData)
       .on('error', err => console.error(err))
-      .on('finish', () => console.log('Done writing.'));
+      .on('finish', () => {});
   } catch (error) {
     console.log('Fail to store information to CSV');
     console.error(error);

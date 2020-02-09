@@ -22,7 +22,7 @@ const Card: React.FC<CarProps> = ({ recipe }) => {
   // render Ingredients to each rows
   const renderIngredients = () =>
     Ingredients.map((item, i) => (
-      <div className='recipes_card_section_row'>
+      <div key={item} className='recipes_card_section_row'>
         <span className='recipes_card_section_row_num'>{i + 1}</span>
         <p className='recipes_card_section_row_content'>{item}</p>
       </div>

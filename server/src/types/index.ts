@@ -5,7 +5,6 @@ export type Recipe = {
   best?: boolean;
 };
 
-// Types
 export type CsvRow = {
   Fruit: string;
   Recipe: string;

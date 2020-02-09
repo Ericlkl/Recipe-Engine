@@ -36,12 +36,15 @@ describe('Recipes API', () => {
       .expect('Content-Type', /json/)
       .expect(200)
       .then(res => {
+        // Should recieve the success msg
         expect(
           isEqual(
             res.body.msg,
             'Success! Best recipe has been saved to csv! Here is the top recipes'
           )
         ).toBeTruthy();
+        // Recipes must be more than 1
+        expect(res.body.results.length).toBeGreaterThan(0);
       });
   });
 });

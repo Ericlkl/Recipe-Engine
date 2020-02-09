@@ -1,5 +1,4 @@
 import { RecipeAction } from '../action';
-import { initialState } from './RecipeContext';
 import { Recipe } from '../../types';
 
 type State = {
