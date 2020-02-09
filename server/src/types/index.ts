@@ -4,3 +4,10 @@ export type Recipe = {
   Ingredients: string[];
   best?: boolean;
 };
+
+// Types
+export type CsvRow = {
+  Fruit: string;
+  Recipe: string;
+  Ingredients: string;
+};

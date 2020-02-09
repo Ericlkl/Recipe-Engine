@@ -3,38 +3,31 @@ import * as fs from 'fs';
 import * as path from 'path';
 import * as csv from 'fast-csv';
 import { isEqualNotCaseSensetive } from './string';
-
-// Types
-type FoodDataRow = {
-  Fruit: string;
-  Recipe: string;
-  Ingredients: string;
-};
-
+import { CsvRow } from '../types';
 // Target CSV path
 const csvPath = path.resolve(__dirname, '../../', 'data', 'fruit.csv');
 
-export const readFromCSV = async (): Promise<FoodDataRow[]> => {
+export const readFromCSV = async (): Promise<CsvRow[]> => {
   return new Promise((resolve, reject) => {
     // Create an result array, return it at the end
-    const csvData: FoodDataRow[] = [];
+    const csvData: CsvRow[] = [];
 
     // Read every single row of CSV file
     fs.createReadStream(csvPath)
       .pipe(csv.parse({ headers: true }))
       .on('error', error => reject(error))
-      .on('data', (row: FoodDataRow) => csvData.push(row))
+      .on('data', (row: CsvRow) => csvData.push(row))
       .on('end', (rowCount: number) => resolve(csvData));
   });
 };
 
-export const storeInfoToCSV = async (row: FoodDataRow) => {
+export const storeInfoToCSV = async (row: CsvRow) => {
   try {
     // Read all fruit data from CSV file
     let database = await readFromCSV();
     // Checking data wheither exist before or not
     // If it is exist in our database, remove it
-    database = database.filter((tempRow: FoodDataRow) =>
+    database = database.filter((tempRow: CsvRow) =>
       isEqualNotCaseSensetive(tempRow.Fruit, row.Fruit) ? false : true
     );
     // Update / Push new record in the final row
