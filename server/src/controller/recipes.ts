@@ -17,7 +17,6 @@ export const getBestRecipes: RequestHandler = async (req, res) => {
 
     // Get Recipes which related to the fruit but Non-Featured
     const recipesHrefs = await searchRecipes(name);
-
     // Get the top 3 Recipes details
     let recipes: Recipe[] = [];
     for (let href of recipesHrefs) {
@@ -41,7 +40,7 @@ export const getBestRecipes: RequestHandler = async (req, res) => {
     // Return top 3 recipes result for client
     res.json({
       msg:
-        'Success! Best recipe has been saved to csv! Here is the top 3 recipes',
+        'Success! Best recipe has been saved to csv! Here is the top recipes',
       results: recipes.map(recipe => {
         recipe.best = recipe.RecipeName === bestRecipe.RecipeName && true;
         return recipe;

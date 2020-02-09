@@ -21,11 +21,12 @@ export const identifyFruitMiddleware: RequestHandler = async (
   next
 ) => {
   const { name } = req.query;
-
+  // If food is exist in Table, go taste.com
   if (await existInTable(name)) {
     return next();
+    // If food is not exist go food data central check it
   } else if (await isFruit(name)) {
-    // Store the best recipe for this fruit into CSV file
+    // Store the food name into CSV file
     await storeInfoToCSV({
       Fruit: upperFirst(name),
       Ingredients: '',
@@ -33,7 +34,7 @@ export const identifyFruitMiddleware: RequestHandler = async (
     });
     return next();
   } else {
-    return res.status(400).json({
+    return res.status(401).json({
       msg: `I don't believe this is a fruit`
     });
   }
@@ -42,9 +43,10 @@ export const identifyFruitMiddleware: RequestHandler = async (
 // Check Express Request wheither match our setup rules or not
 const validateParams: RequestHandler = (req, res, next) => {
   const errors = validationResult(req);
+  // If Params doesnt match the rules we set
   if (!errors.isEmpty()) {
     // Return error message in string format
-    return res.status(400).json({
+    return res.status(401).json({
       msg: errors
         .array()
         .map(err => err.msg)

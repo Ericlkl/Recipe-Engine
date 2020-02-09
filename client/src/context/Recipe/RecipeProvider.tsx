@@ -24,8 +24,11 @@ const RecipeProvider: React.FC = ({ children }) => {
       // Display Sucess Msg to client and allow them try again
       showRetry(res.data.msg);
     } catch (error) {
-      // Not Success, Show msg to user let them try again
-      showRetry(error.response.data.msg);
+      if (error.response.status === 401) {
+        // Not Success, Show msg to user let them try again
+        return showRetry(error.response.data.msg);
+      }
+      return showRetry('Not able to reach server');
     }
   };
 
