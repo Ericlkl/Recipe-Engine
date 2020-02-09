@@ -4,6 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
+    "project-install": "npm i && npm run client-install && npm run client-build && npm run server-install && npm run server-build",
     "client": "npm run start --prefix client",
     "client-install": "npm install --prefix client",
     "client-build": "npm run build --prefix client",
@@ -24,7 +25,6 @@
   },
   "homepage": "https://github.com/Ericlkl/Blackbook-Interview#readme",
   "dependencies": {
-    "@material-ui/icons": "^4.9.1",
     "concurrently": "^5.1.0",
     "nodemon": "^2.0.2"
   }

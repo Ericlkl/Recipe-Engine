@@ -42,7 +42,8 @@ export const getBestRecipes: RequestHandler = async (req, res) => {
       msg:
         'Success! Best recipe has been saved to csv! Here is the top recipes',
       results: recipes.map(recipe => {
-        recipe.best = recipe.RecipeName === bestRecipe.RecipeName && true;
+        recipe.best =
+          recipe.Ingredients.length === bestRecipe.Ingredients.length && true;
         return recipe;
       })
     });

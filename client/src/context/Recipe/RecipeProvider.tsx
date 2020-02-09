@@ -60,9 +60,7 @@ const RecipeProvider: React.FC = ({ children }) => {
   return (
     <RecipeContext.Provider
       value={{
-        name: state.name,
         msg: state.msg,
-        error: state.error,
         recipes: state.recipes,
         openQuery: state.openQuery,
         openRetry: state.openRetry,

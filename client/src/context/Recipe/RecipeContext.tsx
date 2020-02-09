@@ -5,9 +5,7 @@ import { Recipe } from '../../types';
 
 // initial State for Food Context Global Storage
 export const initialState: {
-  name: string;
   msg: string;
-  error: boolean;
   recipes: Recipe[];
   isloading: boolean;
   openQuery: boolean;
@@ -17,9 +15,7 @@ export const initialState: {
   dismissRetry: () => void;
   fetchRecipes: (name: string) => void;
 } = {
-  name: 'Food',
   msg: '',
-  error: false,
   recipes: [],
   openQuery: true,
   openRetry: false,

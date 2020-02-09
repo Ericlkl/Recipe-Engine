@@ -6,16 +6,7 @@ WORKDIR /app
 # Copy all the files to /app
 COPY . /app
 
-# install concurrently in order to run both project at the same time
-RUN npm install
-
-RUN npm run client-install
-
-RUN npm run server-install
-
-RUN npm run client-build
-
-RUN npm run server-build
+RUN npm run project-install
 
 EXPOSE 5000
 

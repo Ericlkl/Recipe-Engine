@@ -2,9 +2,7 @@ import { RecipeAction } from '../action';
 import { Recipe } from '../../types';
 
 type State = {
-  name: string;
   msg: string;
-  error: boolean;
   recipes: Recipe[];
   isloading: boolean;
   openQuery: boolean;
@@ -35,7 +33,7 @@ export default (state: State, action: Action) => {
   switch (action.type) {
     // Display Query Prompt
     case RecipeAction.SHOW_QUERY:
-      return { ...state, openQuery: true, openRetry: false, error: false };
+      return { ...state, openQuery: true, openRetry: false };
     // Display Retry Prompt
     case RecipeAction.SHOW_RETRY:
       return {

@@ -7,7 +7,7 @@
     "start": "node dist/index.js",
     "server": "nodemon src/index.ts",
     "build": "tsc -p .",
-    "test": "jest --watch",
+    "test": "jest --watchAll",
     "cover": "jest --coverage"
   },
   "author": "",
